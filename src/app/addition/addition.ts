@@ -1,7 +1,7 @@
-export function addition(sum1, sum2) {  
+export function addition(oper1, oper2) {  
     // Refactoring
     
     let sum = 0;
-    sum = sum1 + sum2;
+    sum = oper1 + oper2
     return sum;
 }
