@@ -1,0 +1,23 @@
+<div class="calculator">
+
+    <form>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span> 
+            <input id="operator1" [(ngModel)]="operator1" type="number" class="form-control operator1" name="operator1" placeholder="0.0">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+            <input id="operator2" [(ngModel)]="operator2" type="number" class="form-control operator2" name="operator2" placeholder="0.0">
+        </div>
+    </form>
+
+    <i class="glyphicon glyphicon-plus addition-button"
+        (click)="addition()"></i>
+
+    <i class="glyphicon glyphicon-minus substraction-button"
+        (click)="substraction()"></i>
+
+</div>
+
+<span class="result">{{ result }}</span>
