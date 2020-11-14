@@ -35,7 +35,31 @@ describe('Ui Addition - Component', () => {
      expect(result).toBe(4);
   });
 
+
+
+  it('should set operator1 model through ngModel', async() => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const inputElement = fixture.debugElement.query(By.css('input[name="operator1"]')).nativeElement;
+
+    inputElement.value = '3.1416';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(component.operator1).toEqual(3.1416);
+  });
  
+  it('should set operator2 model through ngModel', async() => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const inputElement = fixture.debugElement.query(By.css('input[name="operator2"]')).nativeElement;
+
+    inputElement.value = '2.71';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(component.operator2).toEqual(2.71);
+  });
+
+
   it('should add operator1 and operator2 when i click the addition button ', () => {
     // Arrange 
     component.operator1 = 5.0;
