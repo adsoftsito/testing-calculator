@@ -37,7 +37,7 @@ describe('Ui Addition - Component', () => {
 
 
 
-  it('should set operator1 model through ngModel', async() => {
+  it('Should set operator1 model through ngModel', async() => {
     await fixture.whenStable();
     fixture.detectChanges();
     const inputElement = fixture.debugElement.query(By.css('input[name="operator1"]')).nativeElement;
@@ -48,7 +48,7 @@ describe('Ui Addition - Component', () => {
     expect(component.operator1).toEqual(3.1416);
   });
  
-  it('should set operator2 model through ngModel', async() => {
+  it('Should set operator2 model through ngModel', async() => {
     await fixture.whenStable();
     fixture.detectChanges();
     const inputElement = fixture.debugElement.query(By.css('input[name="operator2"]')).nativeElement;
