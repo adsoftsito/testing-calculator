@@ -101,3 +101,102 @@ describe('Ui Addition - Component', () => {
 
 });
 
+//resta
+
+describe('Ui Substraction - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UiComponent ],
+      imports: [FormsModule],
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call substraction method', () => {
+     // Arrange
+     let result = 0;
+     component.operator1 = 2;
+     component.operator2 = 2;
+ 
+     // Act
+     component.substraction();
+     result = component.result;
+ 
+     // Assert
+     expect(result).toBe(0);
+  });
+
+
+
+  it('Should set operator1 model through ngModel', async() => {
+    // Arrange 
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const inputElement = fixture.debugElement.query(By.css('input[name="operator1"]')).nativeElement;
+
+    // Act 
+    inputElement.value = '3.1416';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    // Assert 
+    expect(component.operator1).toEqual(3.1416);
+  });
+ 
+  it('Should set operator2 model through ngModel', async() => {
+    // Arrange 
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const inputElement = fixture.debugElement.query(By.css('input[name="operator2"]')).nativeElement;
+
+    // Act 
+    inputElement.value = '2.71';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    // Assert 
+    expect(component.operator2).toEqual(2.71);
+  });
+
+
+  it('should substract operator1 and operator2 when i click the substraction button ', () => {
+    // Arrange 
+    component.operator1 = 5.0;
+    component.operator2 = 2.5;
+    let substractionButton = fixture.debugElement.query(By.css('.substraction-button'));
+
+    // Act
+    substractionButton.triggerEventHandler('click', null);
+
+    // Assert
+    expect(component.result).toBe(2.5);
+
+   });
+
+  it('Should render sum in result div', () => {
+    // Arrange
+    component.operator1 = 5;
+    component.operator2 = 5;
+ 
+    // Act
+    component.substraction();
+    fixture.detectChanges();
+    
+    let de = fixture.debugElement.query(By.css('.result'));
+    let el : HTMLElement = de.nativeElement;
+
+    // Assert
+    expect(el.innerText).toContain('0');
+     
+  });
+
+});
