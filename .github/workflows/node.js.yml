@@ -41,7 +41,7 @@ jobs:
 
     - name: cp angular build to container
       run:  | 
-          docker cp  dist/mycv/browser/. serving_base:/usr/local/apache2/htdocs
+          docker cp  dist/testing-calculator/. serving_base:/usr/local/apache2/htdocs
 
     - name: list container
       run:  | 
