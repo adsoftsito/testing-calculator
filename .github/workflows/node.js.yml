@@ -47,3 +47,21 @@ jobs:
       run:  | 
           docker exec serving_base ls -la /usr/local/apache2/htdocs
 
+    - name: build custom docker image
+      run:  docker commit --change  "ENV MODEL_NAME  ${{ secrets.MODEL_NAME }}"
+              serving_base ${{ secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}       
+     
+    - name: list images
+      run:  | 
+          docker images
+
+    - name: docker login
+      env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run:  docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        
+    - name: docker push
+      run:  docker push ${{ secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}       
+
+
