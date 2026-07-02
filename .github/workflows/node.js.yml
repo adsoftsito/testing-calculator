@@ -27,3 +27,23 @@ jobs:
     - run: npm ci
     - run: npm run test-headless    
     - run: npm run build --if-present
+
+    - name: list dir
+      run: ls -la dist/mycv/browser
+
+    - name: download, run httpd image
+      run:  | 
+          docker run -d --name serving_base httpd
+
+    - name: docker ps
+      run:  | 
+          docker ps
+
+    - name: cp angular build to container
+      run:  | 
+          docker cp  dist/mycv/browser/. serving_base:/usr/local/apache2/htdocs
+
+    - name: list container
+      run:  | 
+          docker exec serving_base ls -la /usr/local/apache2/htdocs
+
