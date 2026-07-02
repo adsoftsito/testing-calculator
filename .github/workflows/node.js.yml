@@ -59,6 +59,9 @@ jobs:
       run:  docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
     - name: docker push
-      run:  docker push ${{ secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}       
+      run:  docker push ${{ secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}   
+
+    - name: Trigger Render Deploy
+      run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
 
 
