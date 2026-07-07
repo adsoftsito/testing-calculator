@@ -12,7 +12,7 @@ describe('addition unit tests', () => {
         result = addition(2, 2);
 
         // Assert
-        expect(result).toBe(5);
+        expect(result).toBe(4);
     })
 
     it('Should add 0 + -2 = -2', () => {
